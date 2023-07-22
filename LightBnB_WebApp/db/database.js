@@ -26,8 +26,15 @@ const pool = new Pool({
  */
 const getUserWithEmail = function(email) {
 
-
-
+  return pool
+    .query(`SELECT * FROM users where email=$1`, [email])
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   // let resolvedUser = null;
   // for (const userId in users) {
@@ -39,7 +46,8 @@ const getUserWithEmail = function(email) {
   // return Promise.resolve(resolvedUser);
 };
 
-getUserWithEmail();
+console.log(getUserWithEmail("sebastianguerra@ymail.com"));
+
 
 /**
  * Get a single user from the database given their id.
@@ -48,11 +56,22 @@ getUserWithEmail();
  */
 const getUserWithId = function(id) {
 
+  return pool
+    .query(`SELECT * FROM users where id=$1`, [id])
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
 
-  //
+  //to show nav bar too
   // return Promise.resolve(users[id]);
 };
+
+console.log(getUserWithId(1004));
 
 /**
  * Add a new user to the database.
@@ -61,8 +80,15 @@ const getUserWithId = function(id) {
  */
 const addUser = function(user) {
 
-
-
+  return pool
+    .query(`INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *`, [user.name, user.email, user.password])
+    .then((result) => {
+      console.log(result.rows);
+      return Promise.resolve(result.rows);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   // const userId = Object.keys(users).length + 1;
   // user.id = userId;
