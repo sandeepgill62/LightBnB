@@ -1,4 +1,33 @@
-# LightBnB
+# LightBnB Project
+
+A simple multi-page Airbnb clone that uses a server-side Javascript to displav the information from aeries to web pages via SOL aueries.
+
+## Screen Shots
+
+!["Screen shot of lightBnB page"](./public/screen_shots/lightBnB_portal.png)
+!["Screen shot of sign up page"](./public/screen_shots/Sign_up.png)
+!["Screen shot of sign in page"](./public/screen_shots/Sign_in.png)
+!["Screen shot of sign in with user"](./public/screen_shots/Sign_in_with_user.png)
+!["Screen shot of serach"](./public/screen_shots/Search.png)
+
+
+## Getting Started
+
+1. Clone your repository onto your local device.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:3000/>.
+4. Go to <http://localhost:3000/> in your browser.
+
+
+## Dependencies
+
+- Express
+- Node 5.10.x or above
+- nodemon
+- cookie-session
+- bcryptjs
+- pg
+
 
 ## Project Structure
 
@@ -53,3 +82,6 @@
 * `routes` contains the router files which are responsible for any HTTP requests to `/users/something` or `/api/something`. 
 * `styles` contains all of the sass files. 
 * `server.js` is the entry point to the application. This connects the routes to the database.
+
+
+

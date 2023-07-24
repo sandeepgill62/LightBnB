@@ -1,21 +1,16 @@
 const properties = require("./json/properties.json");
 const users = require("./json/users.json");
 
+// import pg 
 const { Pool } = require('pg');
 
+// declare Pool with database 
 const pool = new Pool({
   user: 'vagrant',
   password: '123',
   host: 'localhost',
   database: 'lightbnb'
 });
-
-// console.log("hello");
-
-// pool.query(`SELECT title FROM properties LIMIT 10;`)
-//   .then(response => {
-//     console.log(response)
-//   });
 
 /// Users
 
@@ -29,21 +24,11 @@ const getUserWithEmail = function(email) {
   return pool
     .query(`SELECT * FROM users where email=$1`, [email])
     .then((result) => {
-      console.log(result.rows);
       return result.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
     });
-
-  // let resolvedUser = null;
-  // for (const userId in users) {
-  //   const user = users[userId];
-  //   if (user?.email.toLowerCase() === email?.toLowerCase()) {
-  //     resolvedUser = user;
-  //   }
-  // }
-  // return Promise.resolve(resolvedUser);
 };
 
 /**
@@ -56,19 +41,13 @@ const getUserWithId = function(id) {
   return pool
     .query(`SELECT * FROM users where id=$1`, [id])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
       console.log(err.message);
     });
-
-
-  //to show nav bar too
-  // return Promise.resolve(users[id]);
 };
 
-console.log(getUserWithId(41));
 
 /**
  * Add a new user to the database.
@@ -80,17 +59,11 @@ const addUser = function(user) {
   return pool
     .query(`INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *`, [user.name, user.email, user.password])
     .then((result) => {
-      console.log(result.rows);
       return Promise.resolve(result.rows);
     })
     .catch((err) => {
       console.log(err.message);
     });
-
-  // const userId = Object.keys(users).length + 1;
-  // user.id = userId;
-  // users[userId] = user;
-  // return Promise.resolve(user);
 };
 
 /// Reservations
@@ -112,7 +85,6 @@ const getAllReservations = function(guest_id, limit = 10) {
     ORDER BY reservations.start_date
     LIMIT $2`, [guest_id, limit])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -133,7 +105,6 @@ const getAllProperties = (options, limit = 10) => {
   const queryParams = [];
 
   if (options.owner_id) {
-    console.log(options);
     queryParams.push(`${options.owner_id}`);
     let queryString = `
     SELECT properties.*, avg(property_reviews.rating) as average_rating
@@ -150,14 +121,12 @@ const getAllProperties = (options, limit = 10) => {
       `;
 
     return pool.query(queryString, queryParams).then((result) => {
-      console.log(result.rows);
       return result.rows;
     }).catch((err) => {
       console.log(err.message);
     });
   }
 
-  // 2
   let queryString = `
   SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
@@ -192,7 +161,6 @@ const getAllProperties = (options, limit = 10) => {
   console.log(queryString, queryParams);
 
   return pool.query(queryString, queryParams).then((result) => {
-    console.log(result.rows);
     return result.rows;
   }).catch((err) => {
     console.log(err.message);
@@ -211,18 +179,11 @@ const addProperty = function(property) {
   return pool
     .query(`INSERT INTO properties (owner_id, title, description, thumbnail_photo_url, cover_photo_url, cost_per_night, street, city, province, post_code, country, parking_spaces, number_of_bathrooms, number_of_bedrooms) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`, [property.owner_id, property.title, property.description, property.thumbnail_photo_url, property.cover_photo_url, property.cost_per_night, property.street, property.city, property.province, property.post_code, property.country, property.parking_spaces, property.number_of_bathrooms, property.number_of_bedrooms])
     .then((result) => {
-      console.log(result.rows);
       return Promise.resolve(result.rows);
     })
     .catch((err) => {
       console.log(err.message);
     });
-
-
-  // const propertyId = Object.keys(properties).length + 1;
-  // property.id = propertyId;
-  // properties[propertyId] = property;
-  // return Promise.resolve(property);
 };
 
 module.exports = {
