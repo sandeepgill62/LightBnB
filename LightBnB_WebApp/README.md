@@ -1,6 +1,6 @@
 # LightBnB Project
 
-A simple multi-page Airbnb clone that uses a server-side Javascript to displav the information from aeries to web pages via SOL aueries.
+A simple multi-page Airbnb clone that uses a server-side Javascript to display the information from queries to web pages via SQL queries.
 
 ## Screen Shots
 
@@ -14,9 +14,10 @@ A simple multi-page Airbnb clone that uses a server-side Javascript to displav t
 ## Getting Started
 
 1. Clone your repository onto your local device.
-2. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:3000/>.
-4. Go to <http://localhost:3000/> in your browser.
+2. Type `cd LightBnB_WebApp` on terminal.
+3. Install dependencies using the `npm install` command.
+4. Start the web server using the `npm run local` command. The app will be served at <http://localhost:3000/>.
+5. Go to <http://localhost:3000/> in your browser.
 
 
 ## Dependencies
@@ -30,6 +31,9 @@ A simple multi-page Airbnb clone that uses a server-side Javascript to displav t
 
 
 ## Project Structure
+
+
+LightBnB_WebApp folder structure
 
 ```
 .
@@ -68,6 +72,7 @@ A simple multi-page Airbnb clone that uses a server-side Javascript to displav t
 ├── README.md
 └── server.js
 ```
+
 
 * `db` contains all the database interaction code.
   * `json` is a directory that contains a bunch of dummy data in `.json` files.
