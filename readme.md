@@ -32,6 +32,8 @@ A simple multi-page Airbnb clone that uses a server-side Javascript to displav t
 
 ## Project Structure
 
+LightBnB_WebApp folder structure
+
 ```
 .
 ├── db
