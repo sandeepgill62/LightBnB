@@ -1,6 +1,6 @@
 # LightBnB Project
 
-A simple multi-page Airbnb clone that uses a server-side Javascript to displav the information from aeries to web pages via SOL aueries.
+A simple multi-page Airbnb clone that uses a server-side Javascript to displav the information from aeries to web pages via SOL queries.
 
 ## Screen Shots
 
